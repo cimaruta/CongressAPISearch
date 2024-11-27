@@ -1,12 +1,16 @@
 import requests
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QPushButton, QGridLayout, QLineEdit, QVBoxLayout, QScrollArea
 import re
+from dotenv import load_dotenv, dotenv_values
+import os
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QWidget, QPushButton, QGridLayout, QLineEdit, QVBoxLayout, QScrollArea
 
-api_key = "mnpNTFwOdFJfmUDDESkbMdya23z47J68knYJqKNF"
+
 bills_url = "https://api.congress.gov/v3/bill"
 
 def search_function(result_layout, date_input):
-
+    
+    load_dotenv('CongressAPISearch/credentials.env')
+    api_key = os.getenv("api_key")
     
     for i in reversed(range(result_layout.count())):
         widget = result_layout.itemAt(i).widget()
